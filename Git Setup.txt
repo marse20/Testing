@@ -1,0 +1,85 @@
+Checking SSH key
+===========================
+$ ls -al ~/.ssh
+
+
+Generating a new SSH key
+===========================
+(Generating public/private rsa key pair)
+
+$ ssh-keygen -t rsa -b 4096 -C "your_emailid@example.com"
+
+
+Checking SSH key again
+===========================
+$ ls -al ~/.ssh
+
+/c/Users/you/.ssh/id_rsa
+/c/Users/you/.ssh/id_rsa.pub
+
+
+Adding your SSH key to the ssh-agent
+============================
+(Ensure the ssh-agent is running:)
+# start the ssh-agent in the background
+
+$ eval $(ssh-agent -s)
+
+Agent pid 59566
+
+(Add your SSH private key to the ssh-agent)
+# Chane "id_rsa" name with your private key file if you have different
+
+$ ssh-add ~/.ssh/id_rsa
+
+
+Adding a new SSH key to your GitHub account
+===========================================
+# Copies the contents of the id_rsa.pub file to your clipboard
+
+$ clip < ~/.ssh/id_rsa.pub
+
+# Go to github page click your profile photo, then click Settings.
+# In the user settings sidebar, click SSH and GPG keys.
+# Click New SSH key or Add SSH key.
+# In the "Title" field, add a descriptive label for the new key. For example, if you're using a personal Mac, you might call this key "Personal MacBook Air"
+#Paste your key into the "Key" field.
+# Click Add SSH key.
+# If prompted, confirm your GitHub password
+
+
+Adding an existing project to GitHub using the command line
+============================================
+# Initialize the local directory as a Git repository.
+
+$ git init
+
+# Add the files in your new local repository. This stages them for the first commit.
+# Adds the files in the local repository and stages them for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
+$ git add .
+
+Commit the files that you've staged in your local repository.
+==========================================================
+$ git commit -m "First commit"
+
+#if new project
+$ git config --global user.email "you@example.com"
+$ git config --global user.name "Your Name"
+
+In the Command prompt, add the URL for the remote repository where your local repository will be pushed.
+==========================================================================
+# Sets the new remote
+$ git remote add origin git@github.com:marse20/Testing.git
+
+# Verifies the new remote URL
+$ git remote -v
+
+
+Push the changes in your local repository to GitHub.
+====================================================
+# Pushes the changes in your local repository up to the remote repository you specified as the origin
+
+$ git push origin master
+
+
+
